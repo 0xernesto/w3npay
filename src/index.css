@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+	input[type="number"]::-webkit-inner-spin-button,
+	input[type="number"]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+}
+
+body {
+	background-color: #ffffff;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+		"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+		"Helvetica Neue", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+
+/* Web3-Onboard Customization */
+:root {
+	--onboard-connect-content-height: 335px;
+	--onboard-wallet-button-border-radius: 12px;
+	--onboard-modal-border-radius: 12px;
+	--onboard-wallet-columns: 1;
+	--onboard-wallet-button-background-hover: #10b98163;
+	--onboard-wallet-button-color: #27272a;
+	--onboard-wallet-button-color-hover: #27272a;
+	--onboard-wallet-button-border-color: #10b981;
+	--onboard-wallet-app-icon-border-color: #ffffff00;
+}
