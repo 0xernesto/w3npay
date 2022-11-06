@@ -78,7 +78,7 @@ const AddressBook = () => {
 
 	return (
 		<div className="flex flex-col items-center justify-center w-full overflow-hidden max-w-2xl p-2 mt-5 bg-gray-200 ring-1 ring-green-200 rounded-lg h-fit">
-			<h2 className="mt-3 text-lg font-bold mb-7">Address Book</h2>
+			<h2 className="mt-3 text-lg font-bold mb-7">Payment Requests</h2>
 			<table className="block w-full h-full mb-3 overflow-x-auto table-auto">
 				<thead className="border-b border-zinc-500">
 					<tr className="px-12 py-4 text-center">

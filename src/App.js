@@ -1,7 +1,5 @@
 // Installed Library Imports
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Client } from "@xmtp/xmtp-js";
 
 // Local Imports
 import Layout from "./components/Layout";
@@ -23,7 +21,16 @@ function App() {
 							<AddressBook />
 							<PaymentRequests />
 						</div>
-					) : null}
+					) : (
+						<div className="flex flex-col items-center justify-start">
+							<h1 className="font-bold text-3xl mt-20">
+								Please Connect your wallet.
+							</h1>
+							<div className="flex items-center justify-center w-36 mt-5">
+								<img src="/images/w3npayLogoFull.svg" />
+							</div>
+						</div>
+					)}
 				</div>
 			</Layout>
 		</div>
