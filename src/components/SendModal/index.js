@@ -23,13 +23,6 @@ const SendModal = ({
 	const [isApproved, setIsApproved] = useState(false);
 	const [isRecipientOnNetwork, setIsRecipientOnNetwork] = useState(false);
 
-	const checkRecipient = async (recipientAddress) => {
-		const isOnNetwork = await Client.canMessage(recipientAddress, {
-			env: "dev",
-		});
-		setIsRecipientOnNetwork(isOnNetwork);
-	};
-
 	const approve = async (setIsLoading, setIsApproved, amount) => {
 		await ContractMethods.approve(setIsLoading, setIsApproved, amount);
 	};
@@ -48,6 +41,13 @@ const SendModal = ({
 			messageId,
 			transactionId
 		);
+	};
+
+	const checkRecipient = async (recipientAddress) => {
+		const isOnNetwork = await Client.canMessage(recipientAddress, {
+			env: "dev",
+		});
+		setIsRecipientOnNetwork(isOnNetwork);
 	};
 
 	const sendAmountWithMessage = async (
