@@ -78,7 +78,7 @@ const AddressBook = () => {
 
 	return (
 		<div className="flex flex-col items-center justify-center w-full overflow-hidden max-w-2xl p-2 mt-5 bg-gray-200 ring-1 ring-green-200 rounded-lg h-fit">
-			<h2 className="mt-3 text-lg font-bold mb-7">Payment Requests</h2>
+			<h2 className="mt-3 text-lg font-bold mb-7">Address Book</h2>
 			<table className="block w-full h-full mb-3 overflow-x-auto table-auto">
 				<thead className="border-b border-zinc-500">
 					<tr className="px-12 py-4 text-center">
@@ -95,22 +95,22 @@ const AddressBook = () => {
 								className="border-b border-gray-300"
 								key={contact.walletid}
 							>
-								<td className="py-4 pl-4 pr-9 whitespace-nowrap">
+								<td className="py-4 pl-4 pr-7 whitespace-nowrap">
 									<span>
 										{truncateAddress(
 											contact.walletid.replace("\\", "0")
 										)}
 									</span>
 								</td>
-								<td className="py-4 px-12 whitespace-nowrap">
+								<td className="py-4 px-14 whitespace-nowrap">
 									<span>{contact.transactions}</span>
 								</td>
-								<td className="py-4 px-12 whitespace-nowrap">
+								<td className="py-4 px-14 whitespace-nowrap">
 									<span>
 										{contact.totaltraded.toFixed(3)}
 									</span>
 								</td>
-								<td className="pr-4 pl-9 py-4 whitespace-nowrap">
+								<td className="pr-4 pl-7 py-4 whitespace-nowrap">
 									<div className="flex items-center justify-center">
 										<button
 											className="w-20 h-10 mx-1 p-2 font-bold bg-black rounded-lg hover:bg-gray-700 text-white"

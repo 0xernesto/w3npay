@@ -20,6 +20,7 @@ const RequestModal = ({
 	const [message, setMessage] = useState("");
 	const [amount, setAmount] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
+	const [success, setSuccess] = useState(false);
 	const [isRecipientOnNetwork, setIsRecipientOnNetwork] = useState(false);
 
 	const checkRecipient = async (recipientAddress) => {
@@ -30,6 +31,7 @@ const RequestModal = ({
 	};
 
 	const requestAmountWithMessage = async (
+		setSuccess,
 		setIsLoading,
 		amount,
 		recipientAddress,
@@ -47,6 +49,7 @@ const RequestModal = ({
 			const mostRecentMessageId = messages[messages.length - 1].id;
 			console.log("messageId: ", mostRecentMessageId);
 			await ContractMethods.request(
+				setSuccess,
 				setIsLoading,
 				amount,
 				recipientAddress,
@@ -143,6 +146,7 @@ const RequestModal = ({
 												className="flex items-center justify-center h-12 px-2 mt-2 rounded-lg font-bold bg-black hover:bg-gray-700 text-white"
 												onClick={() =>
 													requestAmountWithMessage(
+														setSuccess,
 														setIsLoading,
 														amount,
 														"0xE609c9f6687a44eA3a58A035E68CdFe0b63D4196",
@@ -150,6 +154,7 @@ const RequestModal = ({
 														message
 													)
 												}
+												disabled={success && true}
 											>
 												{isLoading ? (
 													<ImSpinner3
@@ -165,6 +170,11 @@ const RequestModal = ({
 												Recipient NOT on XMTP network.
 											</span>
 										)}
+										{success ? (
+											<span className="text-green-600 font-bold p-2 mt-2">
+												Success!
+											</span>
+										) : null}
 									</div>
 								</Dialog.Panel>
 							</Transition.Child>

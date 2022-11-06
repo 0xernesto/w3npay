@@ -21,6 +21,7 @@ const SendModal = ({
 	const [amount, setAmount] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 	const [isApproved, setIsApproved] = useState(false);
+	const [success, setSuccess] = useState(false);
 	const [isRecipientOnNetwork, setIsRecipientOnNetwork] = useState(false);
 
 	const approve = async (setIsLoading, setIsApproved, amount) => {
@@ -28,6 +29,7 @@ const SendModal = ({
 	};
 
 	const payRequest = async (
+		setSuccess,
 		setIsLoading,
 		amount,
 		recipientAddress,
@@ -35,6 +37,7 @@ const SendModal = ({
 		transactionId
 	) => {
 		await ContractMethods.payRequest(
+			setSuccess,
 			setIsLoading,
 			amount,
 			recipientAddress,
@@ -51,6 +54,7 @@ const SendModal = ({
 	};
 
 	const sendAmountWithMessage = async (
+		setSuccess,
 		setIsLoading,
 		amount,
 		recipientAddress,
@@ -67,6 +71,7 @@ const SendModal = ({
 			const mostRecentMessageId = messages[messages.length - 1].id;
 			console.log("messageId: ", mostRecentMessageId);
 			await ContractMethods.pay(
+				setSuccess,
 				setIsLoading,
 				amount,
 				recipientAddress,
@@ -194,6 +199,7 @@ const SendModal = ({
 													onClick={() => {
 														isPayRequest
 															? payRequest(
+																	setSuccess,
 																	setIsLoading,
 																	amount,
 																	recipientAddress,
@@ -201,12 +207,14 @@ const SendModal = ({
 																	transactionId
 															  )
 															: sendAmountWithMessage(
+																	setSuccess,
 																	setIsLoading,
 																	amount,
 																	"0xE609c9f6687a44eA3a58A035E68CdFe0b63D4196",
 																	message
 															  );
 													}}
+													disabled={success && true}
 												>
 													{isLoading ? (
 														<ImSpinner3
@@ -223,6 +231,11 @@ const SendModal = ({
 												Recipient NOT on XMTP network.
 											</span>
 										)}
+										{success ? (
+											<span className="text-green-600 font-bold p-2 mt-2">
+												Success!
+											</span>
+										) : null}
 									</div>
 								</Dialog.Panel>
 							</Transition.Child>

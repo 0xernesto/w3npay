@@ -34,7 +34,25 @@ class ContractMethods {
 		setIsLoading(false);
 	};
 
-	static pay = async (setIsLoading, amount, recipientAddress, messageId) => {
+	static getUsdcBalance = async () => {
+		const signer = store.getState().providerReducer.signer;
+		const account = store.getState().providerReducer.currentAccount.address;
+		const usdcContract = new ethers.Contract(
+			assetList[0].address,
+			UsdcContract.abi,
+			signer
+		);
+
+		return await usdcContract.balanceOf(account);
+	};
+
+	static pay = async (
+		setSuccess,
+		setIsLoading,
+		amount,
+		recipientAddress,
+		messageId
+	) => {
 		setIsLoading(true);
 		const signer = store.getState().providerReducer.signer;
 		const w3npayContract = new ethers.Contract(
@@ -53,6 +71,7 @@ class ContractMethods {
 			);
 			const txReceipt = await txResponse.wait();
 			if (txReceipt.status == 1) {
+				setSuccess(true);
 				console.log("Payment successful!");
 			} else {
 			}
@@ -63,6 +82,7 @@ class ContractMethods {
 	};
 
 	static request = async (
+		setSuccess,
 		setIsLoading,
 		amount,
 		recipientAddress,
@@ -89,6 +109,7 @@ class ContractMethods {
 			const txReceipt = await txResponse.wait();
 
 			if (txReceipt.status == 1) {
+				setSuccess(true);
 				console.log("Request succesful!");
 			} else {
 				console.log("Something went wrong.");
@@ -100,6 +121,7 @@ class ContractMethods {
 	};
 
 	static payRequest = async (
+		setSuccess,
 		setIsLoading,
 		amount,
 		recipientAddress,
@@ -125,6 +147,7 @@ class ContractMethods {
 			const txReceipt = await txResponse.wait();
 
 			if (txReceipt.status == 1) {
+				setSuccess(true);
 				console.log("Request payment succesful!");
 			} else {
 				console.log("Something went wrong.");

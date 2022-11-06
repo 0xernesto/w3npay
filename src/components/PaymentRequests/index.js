@@ -23,19 +23,6 @@ const PaymentRequests = () => {
 		setIsSendModalOpen(true);
 	};
 
-	const getMessages = async () => {
-		setMessages([
-			{ message: "Pay me, please.", messageId: "122sf31f" },
-			{ message: "You owe me.", messageId: "12f0931f" },
-		]);
-	};
-
-	const getTransactions = async () => {
-		const transactionsList = await ContractMethods.getTransactions();
-		console.log("transactions:\n", transactionsList);
-		setTransactions(transactionsList);
-	};
-
 	const getTableData = async () => {
 		const myMessages = [
 			{ message: "Pay me, please.", messageId: "122sf31f" },
@@ -44,7 +31,6 @@ const PaymentRequests = () => {
 		setMessages(myMessages);
 		const transactionsList = await ContractMethods.getTransactions();
 		setTransactions(transactionsList);
-		console.log("transactions", transactionsList);
 
 		let objectsList = [];
 		for (let i = 0; i < transactionsList.length; i++) {
@@ -60,7 +46,6 @@ const PaymentRequests = () => {
 				}
 			}
 		}
-		console.log(objectsList);
 		setTableData(objectsList);
 	};
 
@@ -70,7 +55,7 @@ const PaymentRequests = () => {
 
 	return (
 		<div className="flex flex-col items-center justify-center w-full overflow-hidden max-w-2xl p-2 mt-5 bg-gray-200 ring-1 ring-green-200 rounded-lg h-fit">
-			<h2 className="mt-3 text-lg font-bold mb-7">Address Book</h2>
+			<h2 className="mt-3 text-lg font-bold mb-7">Payment Requests</h2>
 			<table className="block w-full h-full mb-3 overflow-x-auto table-auto">
 				<thead className="border-b border-zinc-500">
 					<tr className="px-8 py-4 text-center">
@@ -92,10 +77,10 @@ const PaymentRequests = () => {
 								</td>
 								<td className="py-4 px-8 whitespace-nowrap">
 									<span>
-										{parseInt(request.amount) * 1e-6}
+										{parseInt(request.amount) * 1e-6} USDC
 									</span>
 								</td>
-								<td className="py-4 px-8 whitespace-nowrap">
+								<td className="py-4 px-10 whitespace-nowrap">
 									<span>{request.message}</span>
 								</td>
 								<td className="py-4 px-8 whitespace-nowrap">
